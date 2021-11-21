@@ -1,0 +1,195 @@
+* {
+  box-sizing: border-box;
+}
+
+.flex-cc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+}
+
+.main-c {
+  justify-content: center !important;
+}
+.main-l {
+  justify-content: flex-start !important;
+}
+.main-r {
+  justify-content: flex-end !important;
+}
+
+.vice-c {
+  align-items: center !important;
+}
+.vice-l {
+  align-items: flex-start !important;
+}
+.vice-r {
+  align-items: flex-end !important;
+}
+
+.flex1 {
+  flex: 1;
+}
+
+.flex2 {
+  flex: 2;
+}
+
+.flex3 {
+  flex: 3;
+}
+
+.t-left {
+  text-align: left;
+}
+
+.t-center {
+  text-align: left;
+}
+
+.c-000 {
+  color: #000;
+}
+
+.c-333 {
+  color: #333;
+}
+
+.c-666 {
+  color: #666;
+}
+
+.c-999 {
+  color: #999;
+}
+
+.c-fff {
+  color: #fff;
+}
+
+.f12 {
+  font-size: 12px;
+}
+
+.f14 {
+  font-size: 14px;
+}
+
+.f16 {
+  font-size: 16px;
+}
+
+.f18 {
+  font-size: 18px;
+}
+
+.f20 {
+  font-size: 20px;
+}
+
+.bg-000 {
+  background-color: #000;
+}
+
+.bg-fff {
+  background-color: #fff;
+}
+
+.w120 {
+  width: 118px !important;
+  margin-right: 12px;
+
+  .el-input {
+    width: 118px !important;
+  }
+}
+
+.w140 {
+  width: 138px !important;
+  margin-right: 12px;
+
+  .el-input {
+    width: 138px !important;
+  }
+}
+
+.w220 {
+  width: 220px !important;
+  margin-right: 12px;
+
+  .el-input {
+    width: 220px !important;
+  }
+}
+
+.mt0 {
+  margin-top: 0px !important;
+}
+
+.overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  background: transparent;
+  border-radius: 5px;
+}
+
+/* 滚动条两端按钮 */
+::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
+}
+
+/* 外层轨道 */
+::-webkit-scrollbar-track {
+  border-radius: 5px;
+}
+
+/* 内层轨道，它会覆盖外层轨道的样式 */
+::-webkit-scrollbar-track-piece {
+  width: 4px;
+  margin: 0 -2px 0;
+}
+
+/* 滑块 */
+::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  min-height: 60px;
+  min-width: 60px;
+  border-radius: 5px;
+}
+
+/* 纵向滑块悬浮 */
+::-webkit-scrollbar-thumb:vertical:hover {
+  background-color: #999;
+}
+
+/* 横向滑块悬浮 */
+::-webkit-scrollbar-thumb:horizontal:hover {
+  background-color: #999;
+}
