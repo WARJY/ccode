@@ -11,7 +11,13 @@
             <el-tabs class="tree-panel" type="border-card" v-model="currentTree">
                 <!-- 组件树 -->
                 <el-tab-pane class="tree-panel-content" label="组件" name="component">
-                    <el-input class="tree-panel-search" size="mini" v-model="search" placeholder="请输入组件名称" @input="handleSearch" />
+                    <el-input
+                        class="tree-panel-search"
+                        size="mini"
+                        v-model="search"
+                        placeholder="请输入组件名称"
+                        @input="handleSearch"
+                    />
                     <el-tree class="tree-panel-tree" :data="dataSource" node-key="id">
                         <template #default="{ node, data }">
                             <flex-row
@@ -242,13 +248,13 @@ export default {
             })
         },
         // 搜索
-        handleSearch(value){
-            if(!value) return this.dataSource = [].concat(components)
-            this.dataSource = components.reduce((total,item,index)=>{
-                return total.concat(item.children.filter((cpt,index)=>{
+        handleSearch(value) {
+            if (!value) return this.dataSource = [].concat(components)
+            this.dataSource = components.reduce((total, item, index) => {
+                return total.concat(item.children.filter((cpt, index) => {
                     return cpt.name?.toLowerCase().indexOf(value.toLowerCase()) > -1
                 }))
-            },[])
+            }, [])
         },
         // 获取父组件
         getParent(parent, uid) {
@@ -368,8 +374,15 @@ export default {
         getEventOption(item) {
             if (!item.emits) return {}
             let eventOption = {}
-            Object.keys(item.emits).forEach((key, index) => {
-                let event = item.emits[key].toString()
+            if (Array.isArray(item.emits)) item.emits.forEach((key, index) => {
+                eventOption[key] = {
+                    use: false
+                }
+            })
+            else Object.keys(item.emits).forEach((key, index) => {
+                let event = item.emits[key]
+                if (is(event) === Function) event = key
+                else event = event.toString()
                 eventOption[event] = {
                     use: false
                 }
@@ -441,6 +454,10 @@ export default {
         // 属性选择
         handlePropSelect(e, item) {
             this.selected.propsOption[item.key].use = e
+        },
+        // 事件选择
+        handleEventSelect(e, item) {
+            this.selected.eventOption[item.event].use = e
         },
         // 获取formLabel
         getFormLabel(label, len) {
@@ -534,8 +551,11 @@ export default {
 
                 this.$store.dispatch("createPage", params).then(data => {
                     this.$message.success("生成成功")
-                    let path = `/${data}`
-                    window.open(path)
+                    let path = `/${data.data}`
+                    const { href } = this.$router.resolve({
+                        path
+                    })
+                    window.open(href)
                 })
             }).catch(() => { })
         },
@@ -552,11 +572,11 @@ export default {
     .tree-panel {
         width: 280px;
         box-shadow: none;
-        &-search{
+        &-search {
             position: sticky;
             top: 0;
         }
-        &-tree{
+        &-tree {
             height: calc(100vh - 160px);
             overflow-y: scroll;
             margin-top: 10px;

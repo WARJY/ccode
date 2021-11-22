@@ -54,6 +54,7 @@ const getChild = function (parent) {
                 // 属性模板生成
                 let propBind = ""
                 if (propType === Object || propType === Boolean || propType === Number || propType === Array) propBind = ":"
+                if(key==="modelValue") return `v-model='${propValue}'`
 
                 return `${propBind}${key}='${propValue}'`
             }).join(" ")
@@ -115,7 +116,7 @@ export default {
     methods: {
         ${temp.methods}
     },
-    };
+};
 </script>
 
 <style scoped>
